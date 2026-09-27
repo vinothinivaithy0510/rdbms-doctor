@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query Doctor | RDBMS Doctor</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand-container">
+            <div class="brand-title">
+                <span>🩺</span> RDBMS Doctor
+            </div>
+            <div class="brand-tagline">"Write SQL. Find the Problem. Understand the Solution."</div>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="index.html"><span class="nav-icon">📊</span> <span class="nav-text">Dashboard</span></a></li>
+            <li class="nav-item"><a href="sql-playground.html"><span class="nav-icon">⚡</span> <span class="nav-text">SQL Playground</span></a></li>
+            <li class="nav-item active"><a href="query-doctor.html"><span class="nav-icon">🔍</span> <span class="nav-text">Query Doctor</span></a></li>
+            <li class="nav-item"><a href="sql-quiz.html"><span class="nav-icon">🎯</span> <span class="nav-text">SQL Quiz</span></a></li>
+            <li class="nav-item"><a href="progress.html"><span class="nav-icon">📈</span> <span class="nav-text">Progress</span></a></li>
+        </ul>
+        <div class="sidebar-footer">
+            MCA Placement Project <br> Spring Boot + MySQL 8
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-content">
+        <header class="header-container">
+            <div>
+                <h1 class="page-title">SQL Query Doctor 🩺</h1>
+                <p class="page-subtitle">Paste any SQL query to diagnose common errors, column typos, missing JOIN conditions, and NULL handling mistakes.</p>
+            </div>
+            <div class="badge-db">Diagnostic Rule Engine</div>
+        </header>
+
+        <!-- Preset Test Scenarios -->
+        <div class="examples-bar">
+            <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">Test Presets:</span>
+            <span class="example-tag" onclick="loadDoctorPreset(1)">Column Misspelling ('nam')</span>
+            <span class="example-tag" onclick="loadDoctorPreset(2)">Missing JOIN ON</span>
+            <span class="example-tag" onclick="loadDoctorPreset(3)">NULL Comparison (= NULL)</span>
+            <span class="example-tag" onclick="loadDoctorPreset(4)">Aggregate in WHERE</span>
+            <span class="example-tag" onclick="loadDoctorPreset(5)">Table Misspelling ('student')</span>
+        </div>
+
+        <!-- Input Editor Box -->
+        <section class="editor-container">
+            <div class="editor-toolbar">
+                <div class="editor-title">
+                    <span>🔍 Diagnostics Console</span>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="clearDoctorInput()">Clear</button>
+                    <button class="btn btn-primary" onclick="analyzeQuery()" id="analyze-btn">
+                        <span>Diagnose Query 🩺</span>
+                    </button>
+                </div>
+            </div>
+            <textarea id="doctor-input" class="sql-editor-textarea" spellcheck="false" placeholder="Enter an SQL query to diagnose... e.g. SELECT s.name, d.department_name FROM students s JOIN departments d ON s.department = d.department_id;"></textarea>
+        </section>
+
+        <!-- Doctor Diagnosis Results Card -->
+        <div id="diagnosis-container" class="doctor-container" style="display: none;">
+            <!-- Status Card -->
+            <div id="status-card" class="status-card status-error">
+                <span id="status-icon">✗</span>
+                <span id="status-title">SQL ERROR DETECTED</span>
+            </div>
+
+            <!-- Problem Explanation Card -->
+            <div class="doctor-section">
+                <div class="doctor-section-title">🚨 PROBLEM DIAGNOSIS</div>
+                <p id="problem-text" style="font-size: 1.05rem; line-height: 1.6; color: var(--text-primary); font-weight: 600;"></p>
+            </div>
+
+            <!-- Corrected Query Card -->
+            <div class="doctor-section">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="doctor-section-title">✨ RECOMMENDED CORRECTED QUERY</div>
+                    <button class="btn btn-secondary" onclick="copyAndOpenPlayground()" style="font-size: 0.8rem; padding: 4px 12px;">Run in Playground ⚡</button>
+                </div>
+                <div class="code-box" id="corrected-query-box">
+                    SELECT * FROM students;
+                </div>
+            </div>
+
+            <!-- Detailed Educational Explanation -->
+            <div class="doctor-section">
+                <div class="doctor-section-title">💡 DETAILED EXPLANATION</div>
+                <p id="explanation-text" style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary);"></p>
+            </div>
+
+            <!-- Metadata & Concepts Card -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="doctor-section">
+                    <div class="doctor-section-title">📚 SQL CONCEPTS</div>
+                    <div class="concept-pills" id="concepts-container">
+                        <span class="concept-tag">SELECT</span>
+                    </div>
+                </div>
+                <div class="doctor-section">
+                    <div class="doctor-section-title">📊 DIFFICULTY LEVEL</div>
+                    <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent-cyan); margin-top: 8px;" id="difficulty-badge">
+                        Beginner
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/query-doctor.js"></script>
+</body>
+</html>

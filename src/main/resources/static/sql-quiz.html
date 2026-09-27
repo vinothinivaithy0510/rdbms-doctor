@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Quiz | RDBMS Doctor</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand-container">
+            <div class="brand-title">
+                <span>🩺</span> RDBMS Doctor
+            </div>
+            <div class="brand-tagline">"Write SQL. Find the Problem. Understand the Solution."</div>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="index.html"><span class="nav-icon">📊</span> <span class="nav-text">Dashboard</span></a></li>
+            <li class="nav-item"><a href="sql-playground.html"><span class="nav-icon">⚡</span> <span class="nav-text">SQL Playground</span></a></li>
+            <li class="nav-item"><a href="query-doctor.html"><span class="nav-icon">🔍</span> <span class="nav-text">Query Doctor</span></a></li>
+            <li class="nav-item active"><a href="sql-quiz.html"><span class="nav-icon">🎯</span> <span class="nav-text">SQL Quiz</span></a></li>
+            <li class="nav-item"><a href="progress.html"><span class="nav-icon">📈</span> <span class="nav-text">Progress</span></a></li>
+        </ul>
+        <div class="sidebar-footer">
+            MCA Placement Project <br> Spring Boot + MySQL 8
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-content">
+        <header class="header-container">
+            <div>
+                <h1 class="page-title">SQL Interview Quiz 🎯</h1>
+                <p class="page-subtitle">Practice essential RDBMS interview questions on JOINs, GROUP BY, HAVING, and NULL value handling.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <div class="badge-db" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border-color: rgba(56, 189, 248, 0.3);">
+                    Score: <span id="quiz-score-badge">0%</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Quiz Container Card -->
+        <section class="quiz-card">
+            <div class="quiz-header">
+                <span class="quiz-category" id="q-category">Topic: SQL JOINs</span>
+                <span style="font-size: 0.85rem; color: var(--text-muted);" id="q-counter">Question 1 of 10</span>
+            </div>
+
+            <!-- Question Text -->
+            <div class="quiz-question-text" id="q-text">
+                Loading quiz questions...
+            </div>
+
+            <!-- Options List -->
+            <div class="options-grid" id="options-container">
+                <!-- Option buttons dynamically generated -->
+            </div>
+
+            <!-- Explanation Banner (hidden until answered) -->
+            <div class="explanation-box" id="explanation-container" style="display: none;">
+                <strong style="color: var(--accent-cyan); display: block; margin-bottom: 4px;" id="explanation-title">Explanation:</strong>
+                <span id="explanation-text"></span>
+            </div>
+
+            <!-- Navigation Bar -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                <button class="btn btn-secondary" onclick="prevQuestion()" id="prev-btn" disabled>← Previous</button>
+                <button class="btn btn-primary" onclick="submitSelectedAnswer()" id="submit-btn">Submit Answer ✓</button>
+                <button class="btn btn-primary" onclick="nextQuestion()" id="next-btn" style="display: none;">Next Question →</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/quiz.js"></script>
+</body>
+</html>

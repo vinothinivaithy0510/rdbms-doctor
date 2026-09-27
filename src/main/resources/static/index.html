@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | RDBMS Doctor</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand-container">
+            <div class="brand-title">
+                <span>🩺</span> RDBMS Doctor
+            </div>
+            <div class="brand-tagline">"Write SQL. Find the Problem. Understand the Solution."</div>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item active"><a href="index.html"><span class="nav-icon">📊</span> <span class="nav-text">Dashboard</span></a></li>
+            <li class="nav-item"><a href="sql-playground.html"><span class="nav-icon">⚡</span> <span class="nav-text">SQL Playground</span></a></li>
+            <li class="nav-item"><a href="query-doctor.html"><span class="nav-icon">🔍</span> <span class="nav-text">Query Doctor</span></a></li>
+            <li class="nav-item"><a href="sql-quiz.html"><span class="nav-icon">🎯</span> <span class="nav-text">SQL Quiz</span></a></li>
+            <li class="nav-item"><a href="progress.html"><span class="nav-icon">📈</span> <span class="nav-text">Progress</span></a></li>
+        </ul>
+        <div class="sidebar-footer">
+            MCA Placement Project <br> Spring Boot + MySQL 8
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-content">
+        <header class="header-container">
+            <div>
+                <h1 class="page-title">SQL Learning Dashboard</h1>
+                <p class="page-subtitle">Welcome back! Monitor query metrics, track error diagnostics, and sharpen your SQL skills.</p>
+            </div>
+            <div class="badge-db">MySQL 8: rdbms_doctor</div>
+        </header>
+
+        <!-- Metric Cards Grid -->
+        <section class="card-grid">
+            <div class="glass-card">
+                <div class="stat-header">
+                    <span class="stat-label">Total Executed</span>
+                    <span class="stat-icon">💻</span>
+                </div>
+                <div class="stat-value" id="total-queries">0</div>
+            </div>
+            <div class="glass-card">
+                <div class="stat-header">
+                    <span class="stat-label">Successful Queries</span>
+                    <span class="stat-icon">✅</span>
+                </div>
+                <div class="stat-value" style="color: var(--accent-green);" id="success-queries">0</div>
+            </div>
+            <div class="glass-card">
+                <div class="stat-header">
+                    <span class="stat-label">Errors Detected</span>
+                    <span class="stat-icon">⚠️</span>
+                </div>
+                <div class="stat-value" style="color: var(--accent-red);" id="error-queries">0</div>
+            </div>
+            <div class="glass-card">
+                <div class="stat-header">
+                    <span class="stat-label">Quiz Attempted</span>
+                    <span class="stat-icon">🎓</span>
+                </div>
+                <div class="stat-value" id="quiz-attempted">0</div>
+            </div>
+            <div class="glass-card">
+                <div class="stat-header">
+                    <span class="stat-label">Quiz Accuracy</span>
+                    <span class="stat-icon">🏆</span>
+                </div>
+                <div class="stat-value" style="color: var(--accent-cyan);" id="quiz-score">0%</div>
+            </div>
+        </section>
+
+        <!-- Topic Progress & Database Schema -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
+            <!-- Topic Progress Card -->
+            <div class="glass-card">
+                <h3 style="font-size: 1.1rem; margin-bottom: 16px; color: var(--accent-cyan);">🎯 SQL Mastery Progress</h3>
+                <div id="topic-progress-container" style="display: flex; flex-direction: column; gap: 16px;">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Demo Schema Overview -->
+            <div class="glass-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <h3 style="font-size: 1.1rem; color: var(--accent-cyan);">🗄️ Demo Database Schema</h3>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">Database: rdbms_doctor</span>
+                </div>
+                <div class="schema-grid" id="schema-preview-container">
+                    <!-- Populated via API -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity Logs Table -->
+        <section class="results-card">
+            <div class="results-header">
+                <h3 style="font-size: 1.1rem; color: var(--text-primary);">📜 Recent Query History</h3>
+                <div class="results-info">
+                    <span class="info-pill" id="history-count">0 Queries Recorded</span>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>SQL Query</th>
+                            <th>Execution Time</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-history-tbody">
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 20px;">
+                                No queries executed yet. Open the <a href="sql-playground.html" style="color: var(--accent-cyan);">SQL Playground</a> to start practicing!
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

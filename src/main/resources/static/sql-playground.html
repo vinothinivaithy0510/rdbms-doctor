@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Playground | RDBMS Doctor</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand-container">
+            <div class="brand-title">
+                <span>🩺</span> RDBMS Doctor
+            </div>
+            <div class="brand-tagline">"Write SQL. Find the Problem. Understand the Solution."</div>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="index.html"><span class="nav-icon">📊</span> <span class="nav-text">Dashboard</span></a></li>
+            <li class="nav-item active"><a href="sql-playground.html"><span class="nav-icon">⚡</span> <span class="nav-text">SQL Playground</span></a></li>
+            <li class="nav-item"><a href="query-doctor.html"><span class="nav-icon">🔍</span> <span class="nav-text">Query Doctor</span></a></li>
+            <li class="nav-item"><a href="sql-quiz.html"><span class="nav-icon">🎯</span> <span class="nav-text">SQL Quiz</span></a></li>
+            <li class="nav-item"><a href="progress.html"><span class="nav-icon">📈</span> <span class="nav-text">Progress</span></a></li>
+        </ul>
+        <div class="sidebar-footer">
+            MCA Placement Project <br> Spring Boot + MySQL 8
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-content">
+        <header class="header-container">
+            <div>
+                <h1 class="page-title">SQL Editor & Playground</h1>
+                <p class="page-subtitle">Execute safe read-only SQL queries against the live database and view tabular results in real-time.</p>
+            </div>
+            <div class="badge-db">Target: rdbms_doctor</div>
+        </header>
+
+        <!-- Quick Examples Bar -->
+        <div class="examples-bar">
+            <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">Sample Queries:</span>
+            <span class="example-tag" onclick="loadExample(1)">SELECT All Students</span>
+            <span class="example-tag" onclick="loadExample(2)">Filter High Marks (>80)</span>
+            <span class="example-tag" onclick="loadExample(3)">LEFT JOIN (Students & Depts)</span>
+            <span class="example-tag" onclick="loadExample(4)">GROUP BY & AVG Marks</span>
+            <span class="example-tag" onclick="loadExample(5)">Enrollments & Courses</span>
+        </div>
+
+        <!-- SQL Editor Container -->
+        <section class="editor-container">
+            <div class="editor-toolbar">
+                <div class="editor-title">
+                    <span>⚡ SQL Query Console</span>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="clearEditor()">Clear</button>
+                    <button class="btn btn-secondary" onclick="sendToDoctor()">Analyze in Query Doctor 🩺</button>
+                    <button class="btn btn-primary" onclick="runQuery()" id="run-btn">
+                        <span>Run Query ▶</span>
+                    </button>
+                </div>
+            </div>
+            <textarea id="sql-input" class="sql-editor-textarea" spellcheck="false" placeholder="Write your SQL SELECT query here... e.g. SELECT * FROM students;"></textarea>
+        </section>
+
+        <!-- Results Display Card -->
+        <section class="results-card" id="results-card">
+            <div class="results-header">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <h3 style="font-size: 1.1rem; color: var(--text-primary);">Execution Results</h3>
+                    <span id="status-badge" class="info-pill" style="font-weight: 700;">Ready</span>
+                </div>
+                <div class="results-info">
+                    <span class="info-pill" id="row-count-pill">0 Rows</span>
+                    <span class="info-pill" id="execution-time-pill">0 ms</span>
+                </div>
+            </div>
+
+            <!-- Error Banner -->
+            <div id="error-box" style="display: none; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5; padding: 16px; border-radius: var(--radius-sm); font-size: 0.9rem; margin-bottom: 16px;">
+                <strong style="display: block; margin-bottom: 4px;">⚠️ Query Execution Error:</strong>
+                <span id="error-message-text"></span>
+            </div>
+
+            <!-- Results Data Table -->
+            <div class="table-responsive" id="table-container">
+                <table class="data-table">
+                    <thead id="table-head">
+                        <tr>
+                            <th>Columns</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <tr>
+                            <td style="text-align: center; color: var(--text-muted); padding: 30px;">
+                                Enter an SQL query above and click <strong>Run Query</strong> to display results.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Database Schema Drawer -->
+        <section class="glass-card">
+            <h3 style="font-size: 1.1rem; color: var(--accent-cyan); margin-bottom: 16px;">📂 Database Tables & Schema Viewer</h3>
+            <div class="schema-grid" id="playground-schema-grid">
+                <!-- Dynamically filled -->
+            </div>
+        </section>
+    </main>
+
+    <script src="js/playground.js"></script>
+</body>
+</html>

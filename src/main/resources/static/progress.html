@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Progress | RDBMS Doctor</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand-container">
+            <div class="brand-title">
+                <span>🩺</span> RDBMS Doctor
+            </div>
+            <div class="brand-tagline">"Write SQL. Find the Problem. Understand the Solution."</div>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="index.html"><span class="nav-icon">📊</span> <span class="nav-text">Dashboard</span></a></li>
+            <li class="nav-item"><a href="sql-playground.html"><span class="nav-icon">⚡</span> <span class="nav-text">SQL Playground</span></a></li>
+            <li class="nav-item"><a href="query-doctor.html"><span class="nav-icon">🔍</span> <span class="nav-text">Query Doctor</span></a></li>
+            <li class="nav-item"><a href="sql-quiz.html"><span class="nav-icon">🎯</span> <span class="nav-text">SQL Quiz</span></a></li>
+            <li class="nav-item active"><a href="progress.html"><span class="nav-icon">📈</span> <span class="nav-text">Progress</span></a></li>
+        </ul>
+        <div class="sidebar-footer">
+            MCA Placement Project <br> Spring Boot + MySQL 8
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-content">
+        <header class="header-container">
+            <div>
+                <h1 class="page-title">SQL Learning & Diagnostic Progress 📈</h1>
+                <p class="page-subtitle">Track your proficiency across relational database concepts, query execution success rate, and quiz scores.</p>
+            </div>
+            <div class="badge-db">Target: MCA Placement Readiness</div>
+        </header>
+
+        <!-- Metric Summary Cards -->
+        <section class="card-grid">
+            <div class="glass-card">
+                <div class="stat-header">
+                    <span class="stat-label">Total Execution Logs</span>
+                    <span class="stat-icon">📜</span>
+                </div>
+                <div class="stat-value" id="p-total-queries">0</div>
+            </div>
+            <div class="glass-card">
+                <div class="stat-header">
+                    <span class="stat-label">Query Success Rate</span>
+                    <span class="stat-icon">⚡</span>
+                </div>
+                <div class="stat-value" style="color: var(--accent-green);" id="p-success-rate">0%</div>
+            </div>
+            <div class="glass-card">
+                <div class="stat-header">
+                    <span class="stat-label">Quiz Accuracy Score</span>
+                    <span class="stat-icon">🎯</span>
+                </div>
+                <div class="stat-value" style="color: var(--accent-cyan);" id="p-quiz-score">0%</div>
+            </div>
+        </section>
+
+        <!-- Concept Breakdown Cards -->
+        <section class="glass-card" style="margin-bottom: 32px;">
+            <h3 style="font-size: 1.1rem; color: var(--accent-cyan); margin-bottom: 20px;">🧠 Core RDBMS Concept Mastery Breakdown</h3>
+            <div id="progress-topics-list" style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Dynamically generated topic progress items -->
+            </div>
+        </section>
+
+        <!-- Recent Log Activity Summary -->
+        <section class="results-card">
+            <div class="results-header">
+                <h3 style="font-size: 1.1rem; color: var(--text-primary);">📊 Historical Activity Stream</h3>
+                <span class="info-pill" id="p-log-count">0 Records</span>
+            </div>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>SQL Query</th>
+                            <th>Execution Time</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody id="p-history-tbody">
+                        <tr>
+                            <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 20px;">Loading historical logs...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/progress.js"></script>
+</body>
+</html>
